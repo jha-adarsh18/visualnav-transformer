@@ -31,14 +31,12 @@ def main(args: argparse.Namespace):
 
     i = 0
     j = 0
-
-    while True:
+    
+    while j < len(images):
         img = Image.open(images[j])
         img.save(os.path.join(topomap_name_dir, f"{i}.png"))
         i += 1
         j += 10
-        if (len(images) - j) < 10:
-            break
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -47,21 +45,21 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "--input-dir",
-        default = None,
+        required = True,
         type = str,
         help = "path to the input sequence"
     )
 
     parser.add_argument(
         "--start-idx",
-        default = None,
+        required = True,
         type = int,
         help = "the starting index of the trajectory for topological map"
     )
 
     parser.add_argument(
         "--end-idx",
-        default = None,
+        required = True,
         type = int,
         help = "the last index of the trajectory for topological map"
     )
